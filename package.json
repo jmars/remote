@@ -1,0 +1,14 @@
+{
+  "author": "",
+  "name": "remote",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "dependencies": {
+    "future":"http://github.com/jmars/future/tarball/master"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
