@@ -1,0 +1,6 @@
+{
+	"name":"remote",
+	"dependencies":{
+		"jmars/future":"*"
+	}
+}
