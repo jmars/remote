@@ -2,5 +2,6 @@
 	"name":"remote",
 	"dependencies":{
 		"jmars/future":"*"
-	}
+	},
+	"scripts":["lib/index.js", "lib/uuid.js"]
 }
