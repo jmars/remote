@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "main": "lib/index.js",
   "dependencies": {
-    "future":"http://github.com/jmars/future/tarball/master"
+    "future":"http://github.com/jmars/future/tarball/master",
+    "uuid":"http://github.com/jmars/uuid/tarball/master"
   },
   "devDependencies": {},
   "optionalDependencies": {},

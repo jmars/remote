@@ -1,4 +1,4 @@
-uuid = require './uuid'
+uuid = require 'uuid'
 Future = require 'future'
 
 Remote = (port, local, api) ->
