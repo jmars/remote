@@ -31,7 +31,7 @@ Remote = (port, local, api) ->
 		connected = false
 		return
 
-	local::Future = Future
+	if local? then local::Future = Future
 
 	port.recieve = (message) ->
 		message = JSON.parse message
