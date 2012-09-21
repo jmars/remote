@@ -38,14 +38,14 @@ Remote = (port, local, api) ->
 		switch message.length
 			when 2
 				[uid, results] = message
-				waiting[uid].resolve results
+				waiting[uid].resolve results...
 				delete waiting[uid]
 			when 3
 				[uid, key, args] = message
 				future = local[key].apply local, args
 				if future.toString() isnt '[Future]'
 					throw new TypeError 'API functions must return a Future.'
-				future (args...) -> port.send JSON.stringify [uid, args]
+				future (result) -> port.send JSON.stringify [uid, result]
 
 	return remote
 
