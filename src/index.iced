@@ -38,7 +38,7 @@ Remote = (port, local, api) ->
 		switch message.length
 			when 2
 				[uid, results] = message
-				waiting[uid].resolve results...
+				waiting[uid].resolve results
 				delete waiting[uid]
 			when 3
 				[uid, key, args] = message
