@@ -37,8 +37,8 @@ Remote = (port, local, api) ->
 		message = JSON.parse message
 		switch message.length
 			when 2
-				[uid, results] = message
-				waiting[uid].resolve results...
+				[uid, result] = message
+				waiting[uid].resolve result
 				delete waiting[uid]
 			when 3
 				[uid, key, args] = message
