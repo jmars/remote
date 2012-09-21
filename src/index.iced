@@ -31,6 +31,8 @@ Remote = (port, local, api) ->
 		connected = false
 		return
 
+	local:: = Future:Future
+
 	port.recieve = (message) ->
 		message = JSON.parse message
 		switch message.length
