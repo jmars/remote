@@ -1,8 +1,8 @@
 {
 	"name":"remote",
 	"dependencies":{
-		"jmars/future":"*",
-		"jmars/uuid":"*"
+		"jmars/uuid":"*",
+    "jmars/stream":"*"
 	},
 	"scripts":["lib/index.js"]
 }
