@@ -11,31 +11,40 @@ class RPC extends Stream
     @paused = false
 
   write: (data) ->
-    if data is 'A' then @emit 'data', JSON.stringify Object.keys @local ; return
     message = JSON.parse data
-    switch message.length
-      when 1
-        for k in message then do =>
+    switch message.type
+      when 'keys'
+        for k in message.keys then do =>
           key = k
           @remote[key] = (args..., cb) ->
             uid = uuid.generate()
             @waiting[uid] = cb
-            message = JSON.stringify [uid, key, args]
+            message = JSON.stringify
+              uid: uid
+              key: key
+              args: args
+              type: 'call'
             @emit 'data', message
-            return
         @emit 'remote', @remote
-      when 2
-        [uid, results] = message
-        @waiting[uid] results...
+      when 'handshake'
+        @emit 'data',
+          type: 'keys'
+          keys: JSON.stringify Object.keys @local
+      when 'return'
+        {uid, result} = message
+        @waiting[uid] result...
         delete waiting[uid]
-      when 3
-        [uid, key, args] = message
+      when 'call'
+        {uid, key, args} = message
         local[key].apply local, [args].concat (args...) ->
-          port.send JSON.stringify [uid, args]
+          @emit 'data', JSON.stringify
+            uid: uid
+            result: args
+            type: 'return'
 
   pipe: ->
     super
-    @emit 'data', 'A'
+    @emit 'data', JSON.stringify {type: 'handshake'}
 
   pause: ->
 
