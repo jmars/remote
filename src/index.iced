@@ -16,7 +16,7 @@ class RPC extends Stream
       when 'keys'
         for k in message.keys then do =>
           key = k
-          @remote[key] = (args..., cb) ->
+          @remote[key] = (args..., cb) =>
             uid = uuid.generate()
             @waiting[uid] = cb
             message = JSON.stringify
@@ -33,7 +33,7 @@ class RPC extends Stream
       when 'return'
         {uid, result} = message
         @waiting[uid] result...
-        delete waiting[uid]
+        delete @waiting[uid]
       when 'call'
         {uid, key, args} = message
         local[key].apply local, [args].concat (args...) ->
