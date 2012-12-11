@@ -36,7 +36,7 @@ class RPC extends Stream
         delete @waiting[uid]
       when 'call'
         {uid, key, args} = message
-        @local[key].apply @local, [args].concat (args...) ->
+        @local[key].apply @local, [args].concat (args...) =>
           @emit 'data', JSON.stringify
             uid: uid
             result: args
