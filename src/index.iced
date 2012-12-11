@@ -27,9 +27,9 @@ class RPC extends Stream
             @emit 'data', message
         @emit 'remote', @remote
       when 'handshake'
-        @emit 'data',
+        @emit 'data', JSON.stringify
           type: 'keys'
-          keys: JSON.stringify Object.keys @local
+          keys: Object.keys @local
       when 'return'
         {uid, result} = message
         @waiting[uid] result...
