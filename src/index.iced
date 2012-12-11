@@ -11,7 +11,7 @@ class RPC extends Stream
     @paused = false
 
   write: (data) ->
-    if data is 'A' then @emit 'data', JSON.stringify Object.keys @local
+    if data is 'A' then @emit 'data', JSON.stringify Object.keys @local ; return
     message = JSON.parse data
     switch message.length
       when 1
